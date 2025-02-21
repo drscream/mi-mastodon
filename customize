@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -o errexit
 
-MASTODON_VERSION=v4.0.2
+MASTODON_VERSION=v4.3.3
 
 MUNIN_PLUGINS="
         cert_expire
@@ -31,20 +31,13 @@ rm -rf /var/pgsql
 
 echo "Creating mastodon user"
 groupadd mastodon
-useradd -d /opt/mastodon -g mastodon -s /usr/bin/bash mastodon
+useradd -d /opt/mastodon -g mastodon -s /usr/bin/bash -m mastodon
 mkdir -p /opt/mastodon
 chown -R mastodon:mastodon /opt/mastodon/
 echo "export RAILS_ENV=production" >> /opt/mastodon/.bash_profile
-echo 'PS1="[\u@\H \w]\\$ "' >> /opt/mastodon/.bash_profile
 
 echo "Setting up source"
 sudo -u mastodon git clone https://github.com/tootsuite/mastodon.git /opt/mastodon/live -b $MASTODON_VERSION
-
-echo "Importing manifests"
-svccfg import /tmp/puma.xml
-svccfg import /tmp/streaming.xml
-svccfg import /tmp/sidekiq.xml
-
 
 echo "Cleaning up"
 rm -rf /root/*

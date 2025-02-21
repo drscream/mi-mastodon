@@ -1,8 +1,8 @@
+bsdinstall
 curl
 wget
 gnupg
 nodejs
-npm
 yarn
 file
 ImageMagick
@@ -12,4 +12,4 @@ build-essential
 postgresql14-server
 postgresql14-client
 redis
-ruby30
+ruby33
