@@ -1,3 +1,6 @@
+# workaround _mdns uid fix 
+https://packages.pkgsrc.pub/skylime-extra/SmartOS/2024Q4/x86_64/mDNSResponder-2559.1.1nb1.tgz
+# required packages
 bsdinstall
 curl
 wget
